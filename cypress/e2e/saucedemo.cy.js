@@ -127,4 +127,33 @@ describe('SauceDemo functional test cases', () => {
         .and('have.text', 'Error: Last Name is required')
     })
   })
+
+  context('Checkout Step Two Page', () => {
+    it('positive: shows the selected item and a mathematically correct order total', () => {
+      openCheckoutStepTwo()
+
+      cy.get('[data-test="inventory-item-name"]').should(
+        'have.text',
+        'Sauce Labs Backpack',
+      )
+
+      cy.get('[data-test="subtotal-label"]').invoke('text').then((subtotalText) => {
+        cy.get('[data-test="tax-label"]').invoke('text').then((taxText) => {
+          cy.get('[data-test="total-label"]').invoke('text').then((totalText) => {
+            const subtotal = Number(subtotalText.match(/[\d.]+/)[0])
+            const tax = Number(taxText.match(/[\d.]+/)[0])
+            const total = Number(totalText.match(/[\d.]+/)[0])
+
+            expect(total, 'displayed total').to.be.closeTo(subtotal + tax, 0.001)
+          })
+        })
+      })
+
+      cy.get('[data-test="finish"]').should('be.visible').and('be.enabled')
+    })
+
+    it('negative: prevents an anonymous user from opening checkout overview directly', () => {
+      expectProtectedRouteToRejectAnonymousUser('/checkout-step-two.html')
+    })
+  })
 })
