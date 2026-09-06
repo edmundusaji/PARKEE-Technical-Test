@@ -77,4 +77,27 @@ describe('SauceDemo functional test cases', () => {
       expectProtectedRouteToRejectAnonymousUser('/inventory.html')
     })
   })
+
+  context('Cart Page', () => {
+    it('positive: adds two selected products with the correct names and quantities', () => {
+      login()
+      cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click()
+      cy.get('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
+      cy.get('[data-test="shopping-cart-badge"]').should('have.text', '2')
+      cy.get('[data-test="shopping-cart-link"]').click()
+
+      cy.location('pathname').should('eq', '/cart.html')
+      cy.get('[data-test="inventory-item"]').should('have.length', 2)
+      cy.get('[data-test="inventory-item-name"]')
+        .then(($names) => [...$names].map((element) => element.textContent))
+        .should('deep.equal', ['Sauce Labs Backpack', 'Sauce Labs Bike Light'])
+      cy.get('[data-test="item-quantity"]').each(($quantity) => {
+        cy.wrap($quantity).should('have.text', '1')
+      })
+    })
+
+    it('negative: prevents an anonymous user from opening the cart directly', () => {
+      expectProtectedRouteToRejectAnonymousUser('/cart.html')
+    })
+  })
 })

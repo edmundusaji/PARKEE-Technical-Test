@@ -8,7 +8,6 @@
     "test": "cypress run",
     "test:api": "cypress run --spec cypress/e2e/one-piece-api.cy.js",
     "test:functional": "cypress run --spec cypress/e2e/saucedemo.cy.js",
-    "test:bugs": "cypress run --spec cypress/e2e/known-bugs.cy.js",
     "cy:open": "cypress open"
   }
 }
