@@ -156,4 +156,24 @@ describe('SauceDemo functional test cases', () => {
       expectProtectedRouteToRejectAnonymousUser('/checkout-step-two.html')
     })
   })
+
+  context('Checkout Complete Page', () => {
+    it('positive: completes an order from inventory to confirmation', () => {
+      openCheckoutStepTwo()
+      cy.get('[data-test="finish"]').click()
+
+      cy.location('pathname').should('eq', '/checkout-complete.html')
+      cy.get('[data-test="complete-header"]').should(
+        'have.text',
+        'Thank you for your order!',
+      )
+      cy.get('[data-test="back-to-products"]').should('be.visible')
+    })
+
+    it('negative: prevents an anonymous user from opening confirmation directly', () => {
+      expectProtectedRouteToRejectAnonymousUser('/checkout-complete.html')
+    })
+  })
+
+  
 })
