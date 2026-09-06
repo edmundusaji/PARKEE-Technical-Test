@@ -5,7 +5,7 @@ This repository contains Cypress automation for two assessment cases:
 - **Part A — API validation:** validates character and crew data returned by the One Piece API.
 - **Part B — UI/end-to-end testing:** tests the SauceDemo login, inventory, cart, and checkout journey.
 
-The runnable Cypress project is in [`project1`](project1/).
+The runnable Cypress project is in [`PARKEE-Technical-Test`](PARKEE-Technical-Test/).
 
 ## Applications Under Test
 
@@ -23,7 +23,7 @@ The API suite verifies that:
 3. `Gum-Gum Fruit` is not assigned to anyone other than `Monkey D. Luffy`.
 4. Each crew's `total_prime` equals the sum of its members' bounties.
 
-Spec: [`project1/cypress/e2e/one-piece-api.cy.js`](project1/cypress/e2e/one-piece-api.cy.js)
+Spec: [`PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js`](PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js)
 
 ### Part B: SauceDemo UI
 
@@ -38,7 +38,7 @@ Each required page has at least one positive and one negative test.
 | Checkout Step Two | The selected item and calculated total are correct | Anonymous direct access is rejected |
 | Checkout Complete | A completed purchase shows confirmation | Anonymous direct access is rejected |
 
-Spec: [`project1/cypress/e2e/saucedemo.cy.js`](project1/cypress/e2e/saucedemo.cy.js)
+Spec: [`PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js`](PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js)
 
 ## Bugs Identified
 
@@ -70,7 +70,7 @@ Clone the GitHub repository:
 
 ```powershell
 git clone <repository-url>
-cd <repository-directory>\project1
+cd <repository-directory>\PARKEE-Technical-Test
 ```
 
 Install dependencies:
@@ -94,7 +94,7 @@ Password: secret_sauce
 
 ## Execution
 
-Run the following commands from the `project1` directory.
+Run the following commands from the `PARKEE-Technical-Test` directory.
 
 ### API validation
 
@@ -137,33 +137,24 @@ Then:
 npm test
 ```
 
-This runs the API and functional UI specs together. The combined command may return a failing exit code while the live One Piece API data does not satisfy the crew-total requirement. The SauceDemo defects are documented separately and are not executed as intentionally failing tests.
-
 ## Repository Structure
 
 ```text
-Cypress/
-├── project1/
-│   ├── cypress/
-│   │   └── e2e/
-│   │       ├── one-piece-api.cy.js
-│   │       └── saucedemo.cy.js
-│   ├── .gitignore
-│   ├── cypress.config.js
-│   ├── package-lock.json
-│   └── package.json
+PARKEE-Technical-Test/
+├── cypress/
+│   └── e2e/
+│       ├── one-piece-api.cy.js
+│       └── saucedemo.cy.js
+├── .gitignore
+├── cypress.config.js
+├── package-lock.json
+├── package.json
 ├── BUG_REPORT.md
-├── README.md
-└── TUTORIAL.md
+└── README.md
+
 ```
 
 ## Test Output
 
-- Failed tests generate screenshots under `project1/cypress/screenshots/`.
-- Video recording is disabled in `project1/cypress.config.js`.
-- `node_modules`, screenshots, and videos are excluded by `project1/.gitignore`.
-
-## Additional Documentation
-
-- [TUTORIAL.md](TUTORIAL.md) contains the complete setup and implementation walkthrough.
-- [BUG_REPORT.md](BUG_REPORT.md) contains the detailed SauceDemo defect reports.
+- Failed tests generate screenshots under `PARKEE-Technical-Test/cypress/screenshots/`.
+- Video recording is disabled in `PARKEE-Technical-Test/cypress.config.js`.
