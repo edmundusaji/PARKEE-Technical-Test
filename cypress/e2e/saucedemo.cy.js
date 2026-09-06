@@ -46,4 +46,26 @@ describe('SauceDemo functional test cases', () => {
         .and('contain', 'Sorry, this user has been locked out')
     })
   })
+
+  context('Inventory Page', () => {
+    it('positive: displays all products and sorts them from low to high price', () => {
+      login()
+
+      cy.get('[data-test="inventory-item"]').should('have.length', 6)
+      cy.get('[data-test="product-sort-container"]').select('lohi')
+
+      cy.get('[data-test="inventory-item-price"]').then(($prices) => {
+        const prices = [...$prices].map((element) =>
+          Number(element.textContent.replace('$', '')),
+        )
+        const sortedPrices = [...prices].sort((a, b) => a - b)
+
+        expect(prices, 'displayed prices').to.deep.equal(sortedPrices)
+      })
+    })
+
+    it('negative: prevents an anonymous user from opening inventory directly', () => {
+      expectProtectedRouteToRejectAnonymousUser('/inventory.html')
+    })
+  })
 })
