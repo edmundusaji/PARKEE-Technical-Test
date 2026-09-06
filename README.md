@@ -38,7 +38,7 @@ Each required page has at least one positive and one negative test.
 | Checkout Step Two | The selected item and calculated total are correct | Anonymous direct access is rejected |
 | Checkout Complete | A completed purchase shows confirmation | Anonymous direct access is rejected |
 
-Spec: [`PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js`](PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js)
+Spec: [[`PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js`](PARKEE-Technical-Test/cypress/e2e/saucedemo.cy.js)](https://github.com/edmundusaji/PARKEE-Technical-Test/blob/master/cypress/e2e/saucedemo.cy.js)
 
 ## Bugs Identified
 
