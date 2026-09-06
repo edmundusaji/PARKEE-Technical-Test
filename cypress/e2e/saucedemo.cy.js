@@ -28,6 +28,15 @@ const openCheckoutStepTwo = () => {
   cy.location('pathname').should('eq', '/checkout-step-two.html')
 }
 
+const expectProtectedRouteToRejectAnonymousUser = (pathname) => {
+  cy.visit(pathname, { failOnStatusCode: false })
+  cy.location('pathname').should('eq', '/')
+  cy.get('[data-test="error"]')
+    .should('be.visible')
+    .and('contain', `You can only access '${pathname}' when you are logged in`)
+}
+
+
 describe('SauceDemo functional test cases', () => {
   context('Login Page', () => {
     it('positive: logs in with a valid standard user', () => {
