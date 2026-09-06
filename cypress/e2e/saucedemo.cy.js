@@ -100,4 +100,31 @@ describe('SauceDemo functional test cases', () => {
       expectProtectedRouteToRejectAnonymousUser('/cart.html')
     })
   })
+
+  context('Checkout Step One Page', () => {
+    it('positive: accepts complete customer information', () => {
+      openCheckoutStepOne()
+
+      cy.get('[data-test="firstName"]').type('Monkey')
+      cy.get('[data-test="lastName"]').type('Luffy')
+      cy.get('[data-test="postalCode"]').type('10101')
+      cy.get('[data-test="continue"]').click()
+
+      cy.location('pathname').should('eq', '/checkout-step-two.html')
+      cy.get('[data-test="title"]').should('have.text', 'Checkout: Overview')
+    })
+
+    it('negative: shows an error when the last name is missing', () => {
+      openCheckoutStepOne()
+
+      cy.get('[data-test="firstName"]').type('Monkey')
+      cy.get('[data-test="postalCode"]').type('10101')
+      cy.get('[data-test="continue"]').click()
+
+      cy.location('pathname').should('eq', '/checkout-step-one.html')
+      cy.get('[data-test="error"]')
+        .should('be.visible')
+        .and('have.text', 'Error: Last Name is required')
+    })
+  })
 })
