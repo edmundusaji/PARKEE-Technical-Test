@@ -27,3 +27,23 @@ const openCheckoutStepTwo = () => {
   cy.get('[data-test="continue"]').click()
   cy.location('pathname').should('eq', '/checkout-step-two.html')
 }
+
+describe('SauceDemo functional test cases', () => {
+  context('Login Page', () => {
+    it('positive: logs in with a valid standard user', () => {
+      login()
+
+      cy.location('pathname').should('eq', '/inventory.html')
+      cy.get('[data-test="title"]').should('have.text', 'Products')
+    })
+
+    it('negative: rejects a locked-out user', () => {
+      login('locked_out_user')
+
+      cy.location('pathname').should('eq', '/')
+      cy.get('[data-test="error"]')
+        .should('be.visible')
+        .and('contain', 'Sorry, this user has been locked out')
+    })
+  })
+})
