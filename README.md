@@ -23,7 +23,7 @@ The API suite verifies that:
 3. `Gum-Gum Fruit` is not assigned to anyone other than `Monkey D. Luffy`.
 4. Each crew's `total_prime` equals the sum of its members' bounties.
 
-Spec: [`PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js`](PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js)
+Spec: [[`PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js`](PARKEE-Technical-Test/cypress/e2e/one-piece-api.cy.js)](https://github.com/edmundusaji/PARKEE-Technical-Test/blob/master/cypress/e2e/one-piece-api.cy.js)
 
 ### Part B: SauceDemo UI
 
